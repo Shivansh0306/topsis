@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topsis Image Downloader</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9209414663654494"
+        crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .glass-container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 50px;
+            width: 450px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        p {
+            margin-bottom: 30px;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 30px;
+            border: none;
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+            outline: none;
+            font-size: 16px;
+            transition: 0.3s;
+            text-align: center;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        input:focus,
+        select:focus {
+            background: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        select option {
+            color: black;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 30px;
+            border: none;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .loader {
+            display: none;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid white;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Animated Background */
+        .area {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .circles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        .circles li {
+            position: absolute;
+            display: block;
+            list-style: none;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            animation: animate 25s linear infinite;
+            bottom: -150px;
+            border-radius: 50%;
+        }
+
+        .circles li:nth-child(1) {
+            left: 25%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+            border-radius: 10%;
+        }
+
+        .circles li:nth-child(2) {
+            left: 10%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 2s;
+            animation-duration: 12s;
+        }
+
+        .circles li:nth-child(3) {
+            left: 70%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 4s;
+        }
+
+        .circles li:nth-child(4) {
+            left: 40%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s;
+            animation-duration: 18s;
+            border-radius: 10%;
+        }
+
+        .circles li:nth-child(5) {
+            left: 65%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 0s;
+        }
+
+        .circles li:nth-child(6) {
+            left: 75%;
+            width: 110px;
+            height: 110px;
+            animation-delay: 3s;
+            border-radius: 50%;
+        }
+
+        .circles li:nth-child(7) {
+            left: 35%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 7s;
+            border-radius: 20%;
+        }
+
+        .circles li:nth-child(8) {
+            left: 50%;
+            width: 25px;
+            height: 25px;
+            animation-delay: 15s;
+            animation-duration: 45s;
+        }
+
+        .circles li:nth-child(9) {
+            left: 20%;
+            width: 15px;
+            height: 15px;
+            animation-delay: 2s;
+            animation-duration: 35s;
+        }
+
+        .circles li:nth-child(10) {
+            left: 85%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 0s;
+            animation-duration: 11s;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Advanced Floating Background -->
+    <div class="area">
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <div class="glass-container">
+        <h1>Topsis Image Hunter</h1>
+        <p>Curated High-Quality Images Ranked by AI</p>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div style="color: #ffcccb; margin-bottom: 15px;">{{ messages[0] }}</div>
+        {% endif %}
+        {% endwith %}
+
+        <form action="/" method="POST"
+            onsubmit="document.querySelector('.loader').style.display='block'; document.querySelector('button').style.display='none';">
+            <input type="text" name="keyword" placeholder="Search Keyword (e.g. Space)" required>
+            <input type="email" name="email" placeholder="Your Email Address" required>
+            <!-- Custom Image Count Input with +/- -->
+            <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin: 15px 0;">
+                <button type="button" onclick="adjustCount(-1)"
+                    style="width: 40px; height: 40px; padding: 0; margin: 0; border-radius: 50%; display:flex; align-items:center; justify-content:center;">-</button>
+                <input type="number" id="image_count" name="image_count" value="10" min="1" max="500"
+                    style="width: 80px; text-align: center; margin: 0;">
+                <button type="button" onclick="adjustCount(1)"
+                    style="width: 40px; height: 40px; padding: 0; margin: 0; border-radius: 50%; display:flex; align-items:center; justify-content:center;">+</button>
+            </div>
+            <p style="font-size: 12px; opacity: 0.8; margin-top: -5px;">Enter number of images (Max 500)</p>
+
+            <script>
+                function adjustCount(amount) {
+                    const input = document.getElementById('image_count');
+                    let val = parseInt(input.value) || 0;
+                    val += amount;
+                    if (val < 1) val = 1;
+                    if (val > 500) val = 500;
+                    input.value = val;
+                }
+            </script>
+            <button type="submit">Start Hunting 🚀</button>
+            <div class="loader"></div>
+            <p style="margin-top: 10px; font-size: 12px; opacity: 0.7;">Wait time: ~10-20 seconds</p>
+        </form>
+    </div>
+</body>
+
+</html>

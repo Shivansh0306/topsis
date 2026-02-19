@@ -1,0 +1,57 @@
+Metadata-Version: 2.4
+Name: Topsis-Shivansh-102316054
+Version: 1.2.0
+Summary: A Python package for implementing TOPSIS
+Author: Shivansh Sharma
+Author-email: ssharma_be23@thapar.edu
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license-file
+Dynamic: requires-python
+Dynamic: summary
+
+# Topsis-Shivansh-102316054
+
+A Python package to implement Topsis (Technique for Order of Preference by Similarity to Ideal Solution).
+
+## Installation
+
+```bash
+pip install Topsis-Shivansh-102316054
+```
+
+## Usage
+
+Run the package from the command line:
+
+```bash
+topsis <InputDataFile> <Weights> <Impacts> <OutputResultFileName>
+```
+
+### Example
+
+```bash
+topsis data.csv "1,1,1,1,1" "+,+,+,+,+" result.csv
+```
+
+### Parameters
+
+1.  **InputDataFile**: Input CSV file containing the data. structure:
+    -   First column: Object/Alternative name (e.g., M1, M2, M3).
+    -   Rest columns: Numeric criteria values.
+2.  **Weights**: Comma-separated weights for each criterion (e.g., "0.25,0.25,0.25,0.25").
+3.  **Impacts**: Comma-separated impacts ('+' for maximize, '-' for minimize) (e.g., "+,+,-,+").
+4.  **OutputResultFileName**: Name of the output CSV file to save results.
+
+## License
+
+MIT

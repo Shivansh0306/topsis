@@ -1,0 +1,2 @@
+[console_scripts]
+topsis = Topsis_Shivansh_102316054.topsis:main
